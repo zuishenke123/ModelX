@@ -1,0 +1,1678 @@
+{
+      "paddle.seed": {
+            "Matcher": "DirectMatcher",
+            "target_api": "torch.manual_seed",
+            "Classification": 0
+      },
+      "paddle.nn.Conv1D": {
+            "Matcher": "FuncParamMatcher",
+            "Classification": 1,
+            "params_change": {
+                  "bias_attr": "bias"
+            },
+            "variantCode": [
+                  {
+                        "param": "weight_attr",
+                        "operatorSequence": [
+                              {
+                                    "level": "python underlying library",
+                                    "function": "__init__",
+                                    "sequence": [
+                                          {
+                                                "class": "add",
+                                                "loc": ["bottom"],
+                                                "code": "weight_attr(self.weight)  \n"
+                                          }
+                                    ]
+                              }
+                        ]
+                  },
+                  {
+                        "param": "bias_attr",
+                        "operatorSequence": [
+                              {
+                                    "level": "python underlying library",
+                                    "function": "__init__",
+                                    "sequence": [
+                                          {
+                                                "class": "add",
+                                                "loc": ["bottom"],
+                                                "code": "bias_attr(self.bias)  \n"
+                                          }
+                                    ]
+                              }
+                        ]
+                  }
+            ]
+      },
+      "paddle.nn.Conv2D": {
+            "Matcher": "FuncParamMatcher",
+            "Classification": 1,
+            "params_change": {
+                  "bias_attr": "bias"
+            },
+            "variantCode": [
+                  {
+                        "param": "weight_attr",
+                        "operatorSequence": [
+                              {
+                                    "level": "python underlying library",
+                                    "function": "__init__",
+                                    "sequence": [
+                                          {
+                                                "class": "add",
+                                                "loc": ["bottom"],
+                                                "code": "weight_attr(self.weight)  \n"
+                                          }
+                                    ]
+                              }
+                        ]
+                  },
+                  {
+                        "param": "bias_attr",
+                        "operatorSequence": [
+                              {
+                                    "level": "python underlying library",
+                                    "function": "__init__",
+                                    "sequence": [
+                                          {
+                                                "class": "add",
+                                                "loc": ["bottom"],
+                                                "code": "bias_attr(self.bias)  \n"
+                                          }
+                                    ]
+                              }
+                        ]
+                  }
+            ]
+      },
+      "paddle.nn.Conv3D": {
+            "Matcher": "FuncParamMatcher",
+            "Classification": 1,
+            "params_change": {
+                  "bias_attr": "bias"
+            },
+            "variantCode": [
+                  {
+                        "param": "weight_attr",
+                        "operatorSequence": [
+                              {
+                                    "level": "python underlying library",
+                                    "function": "__init__",
+                                    "sequence": [
+                                          {
+                                                "class": "add",
+                                                "loc": ["bottom"],
+                                                "code": "weight_attr(self.weight)  \n"
+                                          }
+                                    ]
+                              }
+                        ]
+                  },
+                  {
+                        "param": "bias_attr",
+                        "operatorSequence": [
+                              {
+                                    "level": "python underlying library",
+                                    "function": "__init__",
+                                    "sequence": [
+                                          {
+                                                "class": "add",
+                                                "loc": ["bottom"],
+                                                "code": "bias_attr(self.bias)  \n"
+                                          }
+                                    ]
+                              }
+                        ]
+                  }
+            ]
+      },
+      "paddle.nn.Conv1DTranspose": {
+            "Matcher": "FuncParamMatcher",
+            "Classification": 1,
+            "variantCode": [
+                  {
+                        "param": "weight_attr",
+                        "operatorSequence": [
+                              {
+                                    "level": "python underlying library",
+                                    "function": "__init__",
+                                    "sequence": [
+                                          {
+                                                "class": "add",
+                                                "loc": ["bottom"],
+                                                "code": "weight_attr(self.weight)  \n"
+                                          }
+                                    ]
+                              }
+                        ]
+                  },
+                  {
+                        "param": "bias_attr",
+                        "operatorSequence": [
+                              {
+                                    "level": "python underlying library",
+                                    "function": "__init__",
+                                    "sequence": [
+                                          {
+                                                "class": "add",
+                                                "loc": ["bottom"],
+                                                "code": "bias_attr(self.bias)  \n"
+                                          }
+                                    ]
+                              }
+                        ]
+                  }
+            ]
+      },
+      "paddle.nn.Conv2DTranspose": {
+            "Matcher": "FuncParamMatcher",
+            "Classification": 1,
+            "variantCode": [
+                  {
+                        "param": "weight_attr",
+                        "operatorSequence": [
+                              {
+                                    "level": "python underlying library",
+                                    "function": "__init__",
+                                    "sequence": [
+                                          {
+                                                "class": "add",
+                                                "loc": ["bottom"],
+                                                "code": "weight_attr(self.weight)  \n"
+                                          }
+                                    ]
+                              }
+                        ]
+                  },
+                  {
+                        "param": "bias_attr",
+                        "operatorSequence": [
+                              {
+                                    "level": "python underlying library",
+                                    "function": "__init__",
+                                    "sequence": [
+                                          {
+                                                "class": "add",
+                                                "loc": ["bottom"],
+                                                "code": "bias_attr(self.bias)  \n"
+                                          }
+                                    ]
+                              }
+                        ]
+                  }
+            ]
+      },
+      "paddle.nn.Conv3DTranspose": {
+            "Matcher": "FuncParamMatcher",
+            "Classification": 1,
+            "variantCode": [
+                  {
+                        "param": "weight_attr",
+                        "operatorSequence": [
+                              {
+                                    "level": "python underlying library",
+                                    "function": "__init__",
+                                    "sequence": [
+                                          {
+                                                "class": "add",
+                                                "loc": ["bottom"],
+                                                "code": "weight_attr(self.weight)  \n"
+                                          }
+                                    ]
+                              }
+                        ]
+                  },
+                  {
+                        "param": "bias_attr",
+                        "operatorSequence": [
+                              {
+                                    "level": "python underlying library",
+                                    "function": "__init__",
+                                    "sequence": [
+                                          {
+                                                "class": "add",
+                                                "loc": ["bottom"],
+                                                "code": "bias_attr(self.bias)  \n"
+                                          }
+                                    ]
+                              }
+                        ]
+                  }
+            ]
+      },
+      "paddle.nn.Fold": {
+            "Matcher": "DirectMatcher",
+            "Classification": 0
+      },
+      "paddle.nn.PairwiseDistance": {
+            "Matcher": "DirectMatcher",
+            "Classification": 0,
+            "params_change": {
+                  "epsilon": "eps"
+            }
+      },
+      "paddle.nn.CosineSimilarity": {
+            "Matcher": "DirectMatcher",
+            "Classification": 0,
+            "params_change": {
+                  "axis": "dim"
+            }
+      },
+      "paddle.nn.ELU": {
+            "Matcher": "DirectMatcher",
+            "Classification": 0
+      },
+      "paddle.nn.CELU": {
+            "Matcher": "DirectMatcher",
+            "Classification": 0
+      },
+      "paddle.nn.GLU": {
+            "Matcher": "DirectMatcher",
+            "Classification": 0,
+            "params_change": {
+                  "axis": "dim"
+            }
+      },
+      "paddle.nn.Hardshrink": {
+            "Matcher": "DirectMatcher",
+            "Classification": 0,
+            "params_change": {
+                  "threshold": "lambd"
+            }
+      },
+      "paddle.nn.Hardsigmoid": {
+            "Matcher": "DirectMatcher",
+            "Classification": 0
+      },
+      "paddle.nn.Hardswish": {
+            "Matcher": "DirectMatcher",
+            "Classification": 0
+      },
+      "paddle.nn.Hardtanh": {
+            "Matcher": "DirectMatcher",
+            "Classification": 0
+      },
+      "paddle.nn.ReLU": {
+            "Matcher": "DirectMatcher",
+            "Classification": 0
+      },
+      "paddle.nn.ReLU6": {
+            "Matcher": "DirectMatcher",
+            "Classification": 0
+      },
+      "paddle.nn.SELU": {
+            "Matcher": "DirectMatcher",
+            "Classification": 0
+      },
+      "paddle.nn.Sigmoid": {
+            "Matcher": "DirectMatcher",
+            "Classification": 0
+      },
+      "paddle.nn.SiLU": {
+            "Matcher": "DirectMatcher",
+            "Classification": 0
+      },
+      "paddle.nn.Softmax": {
+            "Matcher": "DirectMatcher",
+            "Classification": 0,
+            "params_change": {
+                  "axis": "dim"
+            }
+      },
+      "paddle.nn.Linear": {
+            "Matcher": "FuncParamMatcher",
+            "Classification": 1,
+            "variantCode": [
+                  {
+                        "param": "weight_attr",
+                        "operatorSequence": [
+                              {
+                                    "level": "python underlying library",
+                                    "function": "__init__",
+                                    "sequence": [
+                                          {
+                                                "class": "add",
+                                                "loc": ["bottom"],
+                                                "code": "weight_attr(self.weight)  \n"
+                                          }
+                                    ]
+                              }
+                        ]
+                  },
+                  {
+                        "param": "bias_attr",
+                        "operatorSequence": [
+                              {
+                                    "level": "python underlying library",
+                                    "function": "__init__",
+                                    "sequence": [
+                                          {
+                                                "class": "add",
+                                                "loc": ["bottom"],
+                                                "code": "bias_attr(self.bias)  \n"
+                                          }
+                                    ]
+                              }
+                        ]
+                  }
+            ]
+      },
+      "paddle.nn.Bilinear": {
+            "Matcher": "FuncParamMatcher",
+            "Classification": 1,
+            "variantCode": [
+                  {
+                        "param": "weight_attr",
+                        "operatorSequence": [
+                              {
+                                    "level": "python underlying library",
+                                    "function": "__init__",
+                                    "sequence": [
+                                          {
+                                                "class": "add",
+                                                "loc": ["bottom"],
+                                                "code": "weight_attr(self.weight)  \n"
+                                          }
+                                    ]
+                              }
+                        ]
+                  },
+                  {
+                        "param": "bias_attr",
+                        "operatorSequence": [
+                              {
+                                    "level": "python underlying library",
+                                    "function": "__init__",
+                                    "sequence": [
+                                          {
+                                                "class": "add",
+                                                "loc": ["bottom"],
+                                                "code": "bias_attr(self.bias)  \n"
+                                          }
+                                    ]
+                              }
+                        ]
+                  }
+            ]
+      },
+      "paddle.nn.Identity": {
+            "Matcher": "DirectMatcher",
+            "Classification": 0
+      },
+      "paddle.flatten": {
+            "Matcher": "DirectMatcher",
+            "Classification": 1,
+            "params_change": {
+                  "start_axis": "start_dim",
+                  "stop_axis": "end_dim",
+                  "x": "input"
+            }
+      },
+      "paddle.nn.Sequential": {
+            "Matcher": "SequentialMatcher",
+            "Classification": 0
+      },
+      "paddle.nn.BatchNorm1d": {
+            "Matcher": "FuncParamMatcher",
+            "Classification": 1,
+            "params_change": {
+                  "epsilon": "eps",
+                  "use_global_stats": "track_running_stats",
+                  "weight_attr": "affine",
+                  "bias_attr": "affine"
+            },
+            "variantCode": [
+                  {
+                        "param": "weight_attr",
+                        "operatorSequence": [
+                              {
+                                    "level": "python underlying library",
+                                    "function": "__init__",
+                                    "sequence": [
+                                          {
+                                                "class": "add",
+                                                "loc": ["bottom"],
+                                                "code": "weight_attr(self.weight)  \n"
+                                          }
+                                    ]
+                              }
+                        ]
+                  },
+                  {
+                        "param": "bias_attr",
+                        "operatorSequence": [
+                              {
+                                    "level": "python underlying library",
+                                    "function": "__init__",
+                                    "sequence": [
+                                          {
+                                                "class": "add",
+                                                "loc": ["bottom"],
+                                                "code": "bias_attr(self.bias)  \n"
+                                          }
+                                    ]
+                              }
+                        ]
+                  }
+            ]
+      },
+      "paddle.nn.BatchNorm2d": {
+            "Matcher": "FuncParamMatcher",
+            "Classification": 1,
+            "params_change": {
+                  "epsilon": "eps",
+                  "use_global_stats": "track_running_stats",
+                  "weight_attr": "affine",
+                  "bias_attr": "affine"
+            },
+            "variantCode": [
+                  {
+                        "param": "weight_attr",
+                        "operatorSequence": [
+                              {
+                                    "level": "python underlying library",
+                                    "function": "__init__",
+                                    "sequence": [
+                                          {
+                                                "class": "add",
+                                                "loc": ["bottom"],
+                                                "code": "weight_attr(self.weight)  \n"
+                                          }
+                                    ]
+                              }
+                        ]
+                  },
+                  {
+                        "param": "bias_attr",
+                        "operatorSequence": [
+                              {
+                                    "level": "python underlying library",
+                                    "function": "__init__",
+                                    "sequence": [
+                                          {
+                                                "class": "add",
+                                                "loc": ["bottom"],
+                                                "code": "bias_attr(self.bias)  \n"
+                                          }
+                                    ]
+                              }
+                        ]
+                  }
+            ]
+      },
+      "paddle.nn.BatchNorm3d": {
+            "Matcher": "FuncParamMatcher",
+            "Classification": 1,
+            "params_change": {
+                  "epsilon": "eps",
+                  "use_global_stats": "track_running_stats",
+                  "weight_attr": "affine",
+                  "bias_attr": "affine"
+            },
+            "variantCode": [
+                  {
+                        "param": "weight_attr",
+                        "operatorSequence": [
+                              {
+                                    "level": "python underlying library",
+                                    "function": "__init__",
+                                    "sequence": [
+                                          {
+                                                "class": "add",
+                                                "loc": ["bottom"],
+                                                "code": "weight_attr(self.weight)  \n"
+                                          }
+                                    ]
+                              }
+                        ]
+                  },
+                  {
+                        "param": "bias_attr",
+                        "operatorSequence": [
+                              {
+                                    "level": "python underlying library",
+                                    "function": "__init__",
+                                    "sequence": [
+                                          {
+                                                "class": "add",
+                                                "loc": ["bottom"],
+                                                "code": "bias_attr(self.bias)  \n"
+                                          }
+                                    ]
+                              }
+                        ]
+                  }
+            ]
+      },
+      "paddle.nn.GroupNorm": {
+            "Matcher": "FuncParamMatcher",
+            "Classification": 1,
+            "params_change": {
+                  "epsilon": "eps",
+                  "weight_attr": "affine",
+                  "bias_attr": "affine"
+            },
+            "variantCode": [
+                  {
+                        "param": "weight_attr",
+                        "operatorSequence": [
+                              {
+                                    "level": "python underlying library",
+                                    "function": "__init__",
+                                    "sequence": [
+                                          {
+                                                "class": "add",
+                                                "loc": ["bottom"],
+                                                "code": "weight_attr(self.weight)  \n"
+                                          }
+                                    ]
+                              }
+                        ]
+                  },
+                  {
+                        "param": "bias_attr",
+                        "operatorSequence": [
+                              {
+                                    "level": "python underlying library",
+                                    "function": "__init__",
+                                    "sequence": [
+                                          {
+                                                "class": "add",
+                                                "loc": ["bottom"],
+                                                "code": "bias_attr(self.bias)  \n"
+                                          }
+                                    ]
+                              }
+                        ]
+                  }
+            ]
+      },
+      "paddle.nn.InstanceNorm1d": {
+            "Matcher": "FuncParamMatcher",
+            "Classification": 1,
+            "params_change": {
+                  "epsilon": "eps",
+                  "weight_attr": "affine",
+                  "bias_attr": "affine"
+            },
+            "variantCode": [
+                  {
+                        "param": "weight_attr",
+                        "operatorSequence": [
+                              {
+                                    "level": "python underlying library",
+                                    "function": "__init__",
+                                    "sequence": [
+                                          {
+                                                "class": "add",
+                                                "loc": ["bottom"],
+                                                "code": "weight_attr(self.weight)  \n"
+                                          }
+                                    ]
+                              }
+                        ]
+                  },
+                  {
+                        "param": "bias_attr",
+                        "operatorSequence": [
+                              {
+                                    "level": "python underlying library",
+                                    "function": "__init__",
+                                    "sequence": [
+                                          {
+                                                "class": "add",
+                                                "loc": ["bottom"],
+                                                "code": "bias_attr(self.bias)  \n"
+                                          }
+                                    ]
+                              }
+                        ]
+                  }
+            ]
+      },
+      "paddle.nn.InstanceNorm2d": {
+            "Matcher": "FuncParamMatcher",
+            "Classification": 1,
+            "params_change": {
+                  "epsilon": "eps",
+                  "weight_attr": "affine",
+                  "bias_attr": "affine"
+            },
+            "variantCode": [
+                  {
+                        "param": "weight_attr",
+                        "operatorSequence": [
+                              {
+                                    "level": "python underlying library",
+                                    "function": "__init__",
+                                    "sequence": [
+                                          {
+                                                "class": "add",
+                                                "loc": ["bottom"],
+                                                "code": "weight_attr(self.weight)  \n"
+                                          }
+                                    ]
+                              }
+                        ]
+                  },
+                  {
+                        "param": "bias_attr",
+                        "operatorSequence": [
+                              {
+                                    "level": "python underlying library",
+                                    "function": "__init__",
+                                    "sequence": [
+                                          {
+                                                "class": "add",
+                                                "loc": ["bottom"],
+                                                "code": "bias_attr(self.bias)  \n"
+                                          }
+                                    ]
+                              }
+                        ]
+                  }
+            ]
+      },
+      "paddle.nn.InstanceNorm3d": {
+            "Matcher": "FuncParamMatcher",
+            "Classification": 1,
+            "params_change": {
+                  "epsilon": "eps",
+                  "weight_attr": "affine",
+                  "bias_attr": "affine"
+            },
+            "variantCode": [
+                  {
+                        "param": "weight_attr",
+                        "operatorSequence": [
+                              {
+                                    "level": "python underlying library",
+                                    "function": "__init__",
+                                    "sequence": [
+                                          {
+                                                "class": "add",
+                                                "loc": ["bottom"],
+                                                "code": "weight_attr(self.weight)  \n"
+                                          }
+                                    ]
+                              }
+                        ]
+                  },
+                  {
+                        "param": "bias_attr",
+                        "operatorSequence": [
+                              {
+                                    "level": "python underlying library",
+                                    "function": "__init__",
+                                    "sequence": [
+                                          {
+                                                "class": "add",
+                                                "loc": ["bottom"],
+                                                "code": "bias_attr(self.bias)  \n"
+                                          }
+                                    ]
+                              }
+                        ]
+                  }
+            ]
+      },
+      "paddle.nn.LayerNorm": {
+            "Matcher": "DirectMatcher",
+            "Classification": 1,
+            "params_change": {
+                  "epsilon": "eps",
+                  "weight_attr": "elementwise_affine",
+                  "bias_attr": "elementwise_affine"
+            },
+            "variantCode": [
+                  {
+                        "param": "weight_attr",
+                        "operatorSequence": [
+                              {
+                                    "level": "python underlying library",
+                                    "function": "__init__",
+                                    "sequence": [
+                                          {
+                                                "class": "add",
+                                                "loc": ["bottom"],
+                                                "code": "weight_attr(self.weight)  \n"
+                                          }
+                                    ]
+                              }
+                        ]
+                  },
+                  {
+                        "param": "bias_attr",
+                        "operatorSequence": [
+                              {
+                                    "level": "python underlying library",
+                                    "function": "__init__",
+                                    "sequence": [
+                                          {
+                                                "class": "add",
+                                                "loc": ["bottom"],
+                                                "code": "bias_attr(self.bias)  \n"
+                                          }
+                                    ]
+                              }
+                        ]
+                  }
+            ]
+      },
+      "paddle.nn.SyncBatchNorm": {
+            "Matcher": "DirectMatcher",
+            "Classification": 0
+      },
+      "paddle.Tensor": {
+            "Matcher": "DirectMatcher",
+            "Classification": 0
+      },
+      "paddle.to_tensor": {
+            "Matcher": "DirectMatcher",
+            "Classification": 0,
+            "target_api": "torch.tensor"
+      },
+      "paddle.nn.Layer": {
+            "Matcher": "DirectMatcher",
+            "Classification": 0,
+            "target_api": "torch.nn.Module"
+      },
+      "paddle.nn.AvgPool1D": {
+            "Matcher": "DirectMatcher",
+            "Classification": 1,
+            "param_change": {
+                  "exclusive": "count_include_pad"
+            }
+      },
+      "paddle.nn.AvgPool2D": {
+            "Matcher": "DirectMatcher",
+            "Classification": 1,
+            "param_change": {
+                  "exclusive": "count_include_pad"
+            }
+      },
+      "paddle.nn.AvgPool3D": {
+            "Matcher": "DirectMatcher",
+            "Classification": 1,
+            "param_change": {
+                  "exclusive": "count_include_pad"
+            }
+      },
+      "paddle.nn.AdaptiveAvgPool1D": {
+            "Matcher": "DirectMatcher",
+            "Classification": 0
+      },
+      "paddle.nn.AdaptiveAvgPool2D": {
+            "Matcher": "DirectMatcher",
+            "Classification": 0
+      },
+      "paddle.nn.AdaptiveAvgPool3D": {
+            "Matcher": "DirectMatcher",
+            "Classification": 0
+      },
+      "paddle.nn.MaxPool1D": {
+            "Matcher": "DirectMatcher",
+            "Classification": 1,
+            "params_change": {
+                  "return_mask": "return_indices"
+            }
+      },
+      "paddle.nn.MaxPool2D": {
+            "Matcher": "DirectMatcher",
+            "Classification": 1,
+            "params_change": {
+                  "return_mask": "return_indices"
+            }
+      },
+      "paddle.nn.MaxPool3D": {
+            "Matcher": "DirectMatcher",
+            "Classification": 1,
+            "params_change": {
+                  "return_mask": "return_indices"
+            }
+      },
+      "paddle.nn.MaxUnpool1d": {
+            "Matcher": "DirectMatcher",
+            "Classification": 0
+      },
+      "paddle.nn.MaxUnpool2d": {
+            "Matcher": "DirectMatcher",
+            "Classification": 0
+      },
+      "paddle.nn.Maxunpool3d": {
+            "Matcher": "DirectMatcher",
+            "Classification": 0
+      },
+      "paddle.nn.Dropout": {
+            "Matcher": "DirectMatcher",
+            "Classification": 0
+      },
+      "paddle.nn.Dropout2D": {
+            "Matcher": "DirectMatcher",
+            "Classification": 0
+      },
+      "paddle.nn.Dropout3D": {
+            "Matcher": "DirectMatcher",
+            "Classification": 0
+      },
+      "paddle.nn.AlphaDropout": {
+            "Matcher": "DirectMatcher",
+            "Classification": 0
+      },
+      "paddle.nn.SmoothL1Loss": {
+            "Matcher": "DirectMatcher",
+            "classification": 1,
+            "params_change": {
+                  "delta": "beta"
+            }
+      },
+      "paddle.nn.TripletMarginLoss": {
+            "Matcher": "DirectMatcher",
+            "classification": 1,
+            "params_change": {
+                  "epsilon": "eps"
+            }
+      },
+      "paddle.nn.TripletMarginWithDistanceLoss": {
+            "Matcher": "DirectMatcher",
+            "Classification": 0
+      },
+      "paddle.nn.L1Loss": {
+            "Matcher": "DirectMatcher",
+            "Classification": 0
+      },
+      "paddle.nn.MSELoss": {
+            "Matcher": "DirectMatcher",
+            "Classification": 0
+      },
+      "paddle.nn.NLLLoss": {
+            "Matcher": "DirectMatcher",
+            "Classification": 0
+      },
+      "paddle.nn.CTCLoss": {
+            "Matcher": "DirectMatcher",
+            "Classification": 0
+      },
+      "paddle.nn.BCELoss": {
+            "Matcher": "DirectMatcher",
+            "Classification": 0
+      },
+      "paddle.nn.BCEWithLogitsLoss": {
+            "Matcher": "DirectMatcher",
+            "Classification": 0
+      },
+      "paddle.nn.HingeEmbeddingLoss": {
+            "Matcher": "DirectMatcher",
+            "Classification": 0
+      },
+      "paddle.nn.MarginRankingLoss": {
+            "Matcher": "DirectMatcher",
+            "Classification": 0
+      },
+      "paddle.nn.MultiLabelSoftMarginLoss": {
+            "Matcher": "DirectMatcher",
+            "Classification": 0
+      },
+      "paddle.nn.SoftMarginLoss": {
+            "Matcher": "DirectMatcher",
+            "Classification": 0
+      },
+      "paddle.nn.CosineEmbeddingLoss": {
+            "Matcher": "DirectMatcher",
+            "Classification": 0
+      },
+      "paddle.nn.MultiMarginLoss": {
+            "Matcher": "DirectMatcher",
+            "Classification": 0
+      },
+      "paddle.nn.LocalResponseNorm": {
+            "Matcher": "DirectMatcher",
+            "Classification": 0
+      },
+      "paddle.nn.MaxUnPool1D": {
+            "Matcher": "DirectMatcher",
+            "Classification": 0
+      },
+      "paddle.nn.MaxUnPool2D": {
+            "Matcher": "DirectMatcher",
+            "Classification": 0
+      },
+      "paddle.nn.MaxUnPool3D": {
+            "Matcher": "DirectMatcher",
+            "Classification": 0
+      },
+      "torch.nn.AvgPool1D": {
+            "Matcher": "DirectMatcher",
+            "Classification": 0,
+            "params_change": {
+                  "exclusive": "count_include_pad"
+            }
+      },
+      "torch.nn.AvgPool2D": {
+            "Matcher": "DirectMatcher",
+            "Classification": 0,
+            "params_change": {
+                  "exclusive": "count_include_pad"
+            }
+      },
+      "torch.nn.AvgPool3D": {
+            "Matcher": "DirectMatcher",
+            "Classification": 0,
+            "params_change": {
+                  "exclusive": "count_include_pad"
+            }
+      },
+      "paddle.nn.AdaptiveMaxPool1D": {
+            "Matcher": "DirectMatcher",
+            "Classification": 0,
+            "params_change": {
+                  "return_mask": "return_indices"
+            }
+      },
+      "paddle.nn.AdaptiveMaxPool2D": {
+            "Matcher": "DirectMatcher",
+            "Classification": 0,
+            "params_change": {
+                  "return_mask": "return_indices"
+            }
+      },
+      "paddle.nn.AdaptiveMaxPool3D": {
+            "Matcher": "DirectMatcher",
+            "Classification": 0,
+            "params_change": {
+                  "return_mask": "return_indices"
+            }
+      },
+      "paddle.nn.Softsign": {
+            "Matcher": "DirectMatcher",
+            "Classification": 0
+      },
+      "paddle.nn.Mish": {
+            "Matcher": "DirectMatcher",
+            "Classification": 0
+      },
+      "paddle.nn.Tanh": {
+            "Matcher": "DirectMatcher",
+            "Classification": 0
+      },
+      "paddle.nn.Tanhshrink": {
+            "Matcher": "DirectMatcher",
+            "Classification": 0
+      },
+      "paddle.nn.Silu": {
+            "Matcher": "DirectMatcher",
+            "Classification": 0
+      },
+      "paddle.nn.RReLU": {
+            "Matcher": "DirectMatcher",
+            "Classification": 0
+      },
+      "paddle.nn.LogSigmoid": {
+            "Matcher": "DirectMatcher",
+            "Classification": 0
+      },
+      "paddle.nn.LeakyReLU": {
+            "Matcher": "DirectMatcher",
+            "Classification": 0
+      },
+      "torch.nn.Hardshrink": {
+            "Matcher": "DirectMatcher",
+            "Classification": 0,
+            "params_change": {
+                  "threshold": "lambd"
+            }
+      },
+      "torch.nn.ELU": {
+            "Matcher": "DirectMatcher",
+            "Classification": 0
+      },
+      "paddle.digamma": {
+            "Matcher": "DirectMatcher",
+            "Classification": 0
+      },
+      "paddle.cumprod": {
+            "Matcher": "DirectMatcher",
+            "Classification": 0
+      },
+      "paddle.cumsum": {
+            "Matcher": "DirectMatcher",
+            "Classification": 0,
+            "params_change": {
+                  "axis": "dim"
+            }
+      },
+      "paddle.cosh": {
+            "Matcher": "DirectMatcher",
+            "Classification": 0
+      },
+      "paddle.cos": {
+            "Matcher": "DirectMatcher",
+            "Classification": 0
+      },
+      "paddle.conj": {
+            "Matcher": "DirectMatcher",
+            "Classification": 0
+      },
+      "paddle.clip": {
+            "Matcher": "DirectMatcher",
+            "Classification": 0
+      },
+      "paddle.ceil": {
+            "Matcher": "DirectMatcher",
+            "Classification": 0
+      },
+      "paddle.atan2": {
+            "Matcher": "DirectMatcher",
+            "Classification": 0
+      },
+      "paddle.atan": {
+            "Matcher": "DirectMatcher",
+            "Classification": 0
+      },
+      "paddle.asin": {
+            "Matcher": "DirectMatcher",
+            "Classification": 0
+      },
+      "paddle.any": {
+           "Matcher": "DirectMatcher",
+            "Classification": 0,
+            "params_change": {
+                  "axis": "dim"
+            }
+      },
+      "paddle.amin": {
+           "Matcher": "DirectMatcher",
+            "Classification": 0,
+            "params_change": {
+                  "axis": "dim"
+            }
+      },
+      "paddle.isclose": {
+            "Matcher": "DirectMatcher",
+            "Classification": 0
+      },
+      "paddle.allclose": {
+            "Matcher": "DirectMatcher",
+            "Classification": 0
+      },
+      "torch.matmul": {
+            "Matcher": "DirectMatcher",
+            "Classification": 0
+      },
+      "paddle.all": {
+            "Matcher": "DirectMatcher",
+            "Classification": 0,
+            "params_change": {
+                  "axis": "dim"
+            }
+      },
+      "paddle.acosh": {
+            "Matcher": "DirectMatcher",
+            "Classification": 0
+      },
+      "paddle.acos": {
+            "Matcher": "DirectMatcher",
+            "Classification": 0
+      },
+      "torch.angle": {
+            "Matcher": "DirectMatcher",
+            "Classification": 0
+      },
+      "paddle.abs": {
+            "Matcher": "DirectMatcher",
+            "Classification": 0
+      },
+      "paddle.inner": {
+            "Matcher": "DirectMatcher",
+            "Classification": 0
+      },
+      "paddle.outer": {
+            "Matcher": "DirectMatcher",
+            "Classification": 0
+      },
+      "paddle.multiply": {
+            "Matcher": "DirectMatcher",
+            "Classification": 0
+      },
+      "paddle.neg": {
+            "Matcher": "DirectMatcher",
+            "Classification": 0
+      },
+      "paddle.not_equal": {
+            "Matcher": "DirectMatcher",
+            "Classification": 0
+      },
+      "paddle.nn.functional.relu": {
+            "Matcher": "DirectMatcher",
+            "Classification": 0,
+            "target_api": "torch.nn.functional.relu"
+      },
+      "paddle.nn.functional.hardtanh": {
+            "Matcher": "DirectMatcher",
+            "Classification": 0,
+            "target_api": "torch.nn.functional.hardtanh"
+      },
+      "paddle.nn.functional.dropout": {
+            "Matcher": "DirectMatcher",
+            "Classification": 0,
+            "target_api": "torch.nn.functional.dropout"
+      },
+      "paddle.nn.functional.log_softmax": {
+            "Matcher": "DirectMatcher",
+            "Classification": 0,
+            "params_change": {
+                  "axis": "dim"
+            },
+            "target_api": "torch.nn.functional.log_softmax"
+      },
+      "paddle.nn.SimpleRNN": {
+            "Matcher": "FuncParamMatcher",
+            "Classification": 1,
+            "target_api": "torch.nn.RNN",
+            "params_change": {
+                  "activation": "nonlinearity",
+                  "direction": "bidirectional",
+                  "bias_ih_attr" : "bias",
+                  "bias_hh_attr": "bias",
+                  "time_major": "batch_first"
+            },
+            "variantCode": [
+                  {
+                        "param": "bias_ih_attr",
+                        "operatorSequence": [
+                              {
+                                    "level": "python underlying library",
+                                    "function": "__init__",
+                                    "sequence": [
+                                          {
+                                                "class": "add",
+                                                "loc": ["bottom"],
+                                                "code": "bias_ih_attr(self.bias_ih)  \n"
+                                          }
+                                    ]
+                              }
+                        ]
+                  },
+                  {
+                        "param": "bias_hh_attr",
+                        "operatorSequence": [
+                              {
+                                    "level": "python underlying library",
+                                    "function": "__init__",
+                                    "sequence": [
+                                          {
+                                                "class": "add",
+                                                "loc": ["bottom"],
+                                                "code": "bias_hh_attr(self.bias_hh)  \n"
+                                          }
+                                    ]
+                              }
+                        ]
+                  },
+                  {
+                        "param": "weight_ih_attr",
+                        "operatorSequence": [
+                              {
+                                    "level": "python underlying library",
+                                    "function": "__init__",
+                                    "sequence": [
+                                          {
+                                                "class": "add",
+                                                "loc": ["bottom"],
+                                                "code": "weight_ih_attr(self.weight_ih)  \n"
+                                          }
+                                    ]
+                              }
+                        ]
+                  },
+                  {
+                        "param": "weight_hh_attr",
+                        "operatorSequence": [
+                              {
+                                    "level": "python underlying library",
+                                    "function": "__init__",
+                                    "sequence": [
+                                          {
+                                                "class": "add",
+                                                "loc": ["bottom"],
+                                                "code": "weight_hh_attr(self.weight_hh)  \n"
+                                          }
+                                    ]
+                              }
+                        ]
+                  }
+            ]
+      },
+      "paddle.nn.LSTMCell": {
+            "Matcher": "FuncParamMatcher",
+            "Classification": 1,
+            "params_change": {
+                  "bias_ih_attr" : "bias",
+                  "bias_hh_attr": "bias"
+            },
+            "variantCode": [
+                  {
+                        "param": "bias_ih_attr",
+                        "operatorSequence": [
+                              {
+                                    "level": "python underlying library",
+                                    "function": "__init__",
+                                    "sequence": [
+                                          {
+                                                "class": "add",
+                                                "loc": ["bottom"],
+                                                "code": "bias_ih_attr(self.bias_ih)  \n"
+                                          }
+                                    ]
+                              }
+                        ]
+                  },
+                  {
+                        "param": "bias_hh_attr",
+                        "operatorSequence": [
+                              {
+                                    "level": "python underlying library",
+                                    "function": "__init__",
+                                    "sequence": [
+                                          {
+                                                "class": "add",
+                                                "loc": ["bottom"],
+                                                "code": "bias_hh_attr(self.bias_hh)  \n"
+                                          }
+                                    ]
+                              }
+                        ]
+                  },
+                  {
+                        "param": "weight_ih_attr",
+                        "operatorSequence": [
+                              {
+                                    "level": "python underlying library",
+                                    "function": "__init__",
+                                    "sequence": [
+                                          {
+                                                "class": "add",
+                                                "loc": ["bottom"],
+                                                "code": "weight_ih_attr(self.weight_ih)  \n"
+                                          }
+                                    ]
+                              }
+                        ]
+                  },
+                  {
+                        "param": "weight_hh_attr",
+                        "operatorSequence": [
+                              {
+                                    "level": "python underlying library",
+                                    "function": "__init__",
+                                    "sequence": [
+                                          {
+                                                "class": "add",
+                                                "loc": ["bottom"],
+                                                "code": "weight_hh_attr(self.weight_hh)  \n"
+                                          }
+                                    ]
+                              }
+                        ]
+                  }
+            ]
+      },
+      "paddle.nn.GRU": {
+            "Matcher": "FuncParamMatcher",
+            "Classification": 1,
+            "params_change": {
+                  "bias_ih_attr" : "bias",
+                  "bias_hh_attr": "bias",
+                  "time_major": "batch_first",
+                  "direction": "bidirectional"
+            },
+            "variantCode": [
+                  {
+                        "param": "bias_ih_attr",
+                        "operatorSequence": [
+                              {
+                                    "level": "python underlying library",
+                                    "function": "__init__",
+                                    "sequence": [
+                                          {
+                                                "class": "add",
+                                                "loc": ["bottom"],
+                                                "code": "bias_ih_attr(self.bias_ih)  \n"
+                                          }
+                                    ]
+                              }
+                        ]
+                  },
+                  {
+                        "param": "bias_hh_attr",
+                        "operatorSequence": [
+                              {
+                                    "level": "python underlying library",
+                                    "function": "__init__",
+                                    "sequence": [
+                                          {
+                                                "class": "add",
+                                                "loc": ["bottom"],
+                                                "code": "bias_hh_attr(self.bias_hh)  \n"
+                                          }
+                                    ]
+                              }
+                        ]
+                  },
+                  {
+                        "param": "weight_ih_attr",
+                        "operatorSequence": [
+                              {
+                                    "level": "python underlying library",
+                                    "function": "__init__",
+                                    "sequence": [
+                                          {
+                                                "class": "add",
+                                                "loc": ["bottom"],
+                                                "code": "weight_ih_attr(self.weight_ih)  \n"
+                                          }
+                                    ]
+                              }
+                        ]
+                  },
+                  {
+                        "param": "weight_hh_attr",
+                        "operatorSequence": [
+                              {
+                                    "level": "python underlying library",
+                                    "function": "__init__",
+                                    "sequence": [
+                                          {
+                                                "class": "add",
+                                                "loc": ["bottom"],
+                                                "code": "weight_hh_attr(self.weight_hh)  \n"
+                                          }
+                                    ]
+                              }
+                        ]
+                  }
+            ]
+      },
+      "paddle.nn.GRUCell": {
+            "Matcher": "FuncParamMatcher",
+            "Classification": 1,
+            "variantCode": [
+                  {
+                        "param": "bias_ih_attr",
+                        "operatorSequence": [
+                              {
+                                    "level": "python underlying library",
+                                    "function": "__init__",
+                                    "sequence": [
+                                          {
+                                                "class": "add",
+                                                "loc": ["bottom"],
+                                                "code": "bias_ih_attr(self.bias_ih)  \n"
+                                          }
+                                    ]
+                              }
+                        ]
+                  },
+                  {
+                        "param": "bias_hh_attr",
+                        "operatorSequence": [
+                              {
+                                    "level": "python underlying library",
+                                    "function": "__init__",
+                                    "sequence": [
+                                          {
+                                                "class": "add",
+                                                "loc": ["bottom"],
+                                                "code": "bias_hh_attr(self.bias_hh)  \n"
+                                          }
+                                    ]
+                              }
+                        ]
+                  },
+                  {
+                        "param": "weight_ih_attr",
+                        "operatorSequence": [
+                              {
+                                    "level": "python underlying library",
+                                    "function": "__init__",
+                                    "sequence": [
+                                          {
+                                                "class": "add",
+                                                "loc": ["bottom"],
+                                                "code": "weight_ih_attr(self.weight_ih)  \n"
+                                          }
+                                    ]
+                              }
+                        ]
+                  },
+                  {
+                        "param": "weight_hh_attr",
+                        "operatorSequence": [
+                              {
+                                    "level": "python underlying library",
+                                    "function": "__init__",
+                                    "sequence": [
+                                          {
+                                                "class": "add",
+                                                "loc": ["bottom"],
+                                                "code": "weight_hh_attr(self.weight_hh)  \n"
+                                          }
+                                    ]
+                              }
+                        ]
+                  }
+            ]
+      },
+      "paddle.nn.Embedding": {
+            "Matcher": "DirectMatcher",
+            "Classification": 1,
+             "params_change": {
+                  "weight_attr" : "_weight"
+            }
+      },
+      "paddle.nn.TransformerEncoder": {
+            "Matcher": "DirectMatcher",
+            "Classification": 0
+      },
+      "paddle.nn.TransformerDecoder": {
+            "Matcher": "DirectMatcher",
+            "Classification": 0
+      },
+      "paddle.nn.MultiHeadAttention": {
+            "Matcher": "FuncParamMatcher",
+            "Classification": 1,
+            "variantCode": [
+                  {
+                        "param": "weight_attr",
+                        "operatorSequence": [
+                              {
+                                    "level": "python underlying library",
+                                    "function": "__init__",
+                                    "sequence": [
+                                          {
+                                                "class": "add",
+                                                "loc": ["bottom"],
+                                                "code": "weight_attr(self.q_proj_weight)  \n"
+                                          },
+                                          {
+                                                "class": "add",
+                                                "loc": ["bottom"],
+                                                "code": "weight_attr(self.k_proj_weight)  \n"
+                                          },
+                                          {
+                                                "class": "add",
+                                                "loc": ["bottom"],
+                                                "code": "weight_attr(elf.v_proj_weight)  \n"
+                                          }
+                                    ]
+                              }
+                        ]
+                  },
+                  {
+                        "param": "bias_attr",
+                        "operatorSequence": [
+                              {
+                                    "level": "python underlying library",
+                                    "function": "__init__",
+                                    "sequence": [
+                                          {
+                                                "class": "add",
+                                                "loc": ["bottom"],
+                                                "code": "bias_attr(self.bias_k)  \n"
+                                          },
+                                          {
+                                                "class": "add",
+                                                "loc": ["bottom"],
+                                                "code": "bias_attr(self.bias_v)  \n"
+                                          }
+                                    ]
+                              }
+                        ]
+                  }
+            ]
+      },
+      "paddle.nn.initializer.Constant": {
+            "Matcher": "InitializerMatcher",
+            "Classification": 0,
+            "params_change": {
+                  "value": "val"
+            },
+            "target_api": "torch.nn.init.constant_"
+      },
+      "paddle.nn.initializer.Uniform": {
+            "Matcher": "InitializerMatcher",
+            "Classification": 0,
+            "params_change": {
+                  "low": "a",
+                  "high": "b"
+            },
+            "target_api": "torch.nn.init.uniform_"
+      },
+      "paddle.nn.initializer.Normal": {
+            "Matcher": "InitializerMatcher",
+            "Classification": 0,
+            "target_api": "torch.nn.init.normal_"
+      },
+      "paddle.nn.initializer.KaimingUniform": {
+            "Matcher": "InitializerMatcher",
+            "Classification": 0,
+            "params_change": {
+                  "negative_slope": "a"
+            },
+            "target_api": "torch.nn.init.kaiming_uniform_"
+      },
+      "paddle.nn.initializer.KaimingNormal": {
+            "Matcher": "InitializerMatcher",
+            "Classification": 0,
+            "params_change": {
+                  "negative_slope": "a"
+            },
+            "target_api": "torch.nn.init.kaiming_normal_"
+      },
+      "paddle.matmul": {
+            "Matcher": "DirectMatcher",
+            "Classification": 0,
+            "target_api": "torch.matmul"
+      },
+      "paddle.sum": {
+            "Matcher": "DirectMatcher",
+            "Classification": 0,
+            "target_api": "torch.sum"
+      },
+      "paddle.nn.LSTM": {
+            "Matcher": "FuncParamMatcher",
+            "Classification": 1,
+            "params_change": {
+                  "time_major": "batch_first",
+                  "direction": "bidirectional",
+                  "bias_ih_attr" : "bias",
+                  "bias_hh_attr": "bias"
+            },
+            "variantCode": [
+                  {
+                        "param": "bias_ih_attr",
+                        "operatorSequence": [
+                              {
+                                    "level": "python underlying library",
+                                    "function": "__init__",
+                                    "sequence": [
+                                          {
+                                                "class": "add",
+                                                "loc": ["bottom"],
+                                                "code": "bias_ih_attr(self.bias_ih)  \n"
+                                          }
+                                    ]
+                              }
+                        ]
+                  },
+                  {
+                        "param": "bias_hh_attr",
+                        "operatorSequence": [
+                              {
+                                    "level": "python underlying library",
+                                    "function": "__init__",
+                                    "sequence": [
+                                          {
+                                                "class": "add",
+                                                "loc": ["bottom"],
+                                                "code": "bias_hh_attr(self.bias_hh)  \n"
+                                          }
+                                    ]
+                              }
+                        ]
+                  },
+                  {
+                        "param": "weight_ih_attr",
+                        "operatorSequence": [
+                              {
+                                    "level": "python underlying library",
+                                    "function": "__init__",
+                                    "sequence": [
+                                          {
+                                                "class": "add",
+                                                "loc": ["bottom"],
+                                                "code": "weight_ih_attr(self.weight_ih)  \n"
+                                          }
+                                    ]
+                              }
+                        ]
+                  },
+                  {
+                        "param": "weight_hh_attr",
+                        "operatorSequence": [
+                              {
+                                    "level": "python underlying library",
+                                    "function": "__init__",
+                                    "sequence": [
+                                          {
+                                                "class": "add",
+                                                "loc": ["bottom"],
+                                                "code": "weight_hh_attr(self.weight_hh)  \n"
+                                          }
+                                    ]
+                              }
+                        ]
+                  }
+            ]
+      },
+      "paddle.tanh": {
+            "Matcher": "DirectMatcher",
+            "Classification": 0
+      },
+      "paddle.unsqueeze": {
+            "Matcher": "DirectMatcher",
+            "Classification": 0,
+            "params_change": {
+                  "axis": "dim"
+            }
+      },
+      "paddle.nn.functional.softmax": {
+            "Matcher": "DirectMatcher",
+            "Classification": 0,
+            "params_change": {
+                  "axis": "dim"
+            },
+            "target_api": "torch.nn.functional.softmax"
+      }
+}

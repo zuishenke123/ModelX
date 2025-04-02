@@ -1,0 +1,89 @@
+cmake_minimum_required(VERSION 3.15)
+# Set operator names and execution environment. i.e. project(CrossEntropyLoss LANGUAGES CUDA CXX) , set(CMAKE_CUDA_STANDARD 14)
+project()
+set(CMAKE_{}_STANDARD 14)
+
+# Get the Conda environment's root directory with CONDA_PREFIX. i.e.  set(CONDA_PREFIX "** Path of anaconda3/envs/xxx !**")
+set(CONDA_PREFIX {})
+
+# Find and set the include directories and link libraries for third-party libraries.
+if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
+   message(STATUS "Building for Windows.")
+   list(APPEND CMAKE_PREFIX_PATH "${CONDA_PREFIX}/Library/lib/cmake")
+   list(APPEND CMAKE_PREFIX_PATH "${CONDA_PREFIX}/Library/share")
+
+   foreach(path IN LISTS CMAKE_PREFIX_PATH)
+    # Find all *Config.cmake and *-config.cmake files
+        file(GLOB_RECURSE config_files CONFIGURE_DEPENDS "${path}/*Config.cmake" "${path}/*-config.cmake")
+        foreach(config_file IN LISTS config_files)
+            get_filename_component(lib_name ${config_file} NAME_WE)
+            # Remove 'Config' or '-config' from the library name
+            string(REGEX REPLACE "(Config|-config)$" "" lib_name ${lib_name})
+            # Attempt to find and include the library
+            find_package(${lib_name} QUIET NO_MODULE)
+            if(${lib_name}_FOUND)
+                message(STATUS "Found ${lib_name}")
+                # Attempt to retrieve both uppercase and lowercase include directory variables
+                string(TOUPPER ${lib_name} lib_name_upper)
+                set(include_dir_var_names "${lib_name_upper}_INCLUDE_DIRS" "${lib_name_upper}_INCLUDE_DIR"
+                        "${lib_name}_INCLUDE_DIRS" "${lib_name}_INCLUDE_DIR")
+                foreach(include_dir_var IN LISTS include_dir_var_names)
+                    if(DEFINED ${include_dir_var})
+                        message(STATUS "Including directories for ${lib_name}: ${${include_dir_var}}")
+                        include_directories(${${include_dir_var}})
+                    endif()
+                endforeach()
+            endif()
+        endforeach()
+    endforeach()
+elseif(CMAKE_SYSTEM_NAME STREQUAL "Linux")
+    find_package(Eigen3 QUIET)
+    if(NOT Eigen3_FOUND)
+        message(STATUS "Eigen3 not found. Using backup include directory.")
+        include_directories(**You need to customize the installation and locate Eigen3!**)
+    else()
+        # If Eigen3 is found, use the targets provided by find_package
+        include_directories(${EIGEN3_INCLUDE_DIR})
+    endif()
+    include_directories("${CONDA_PREFIX}/include")
+    message(STATUS "Building for Linux.")
+endif()
+# Add the include directories of all discovered third-party libraries to the project.
+include_directories(${ALL_INCLUDE_DIRS})
+
+
+
+set(PADDLE_LIBRARIES {})
+
+include_directories(**Path of Eigen3!**)
+include_directories(**Path of anaconda3/include!**)
+include_directories(**Path of anaconda3/envs/xxx/include !**)
+find_package(CUDA REQUIRED)
+message(STATUS "cuda version: " ${CUDA_VERSION_STRING})
+include_directories(${CUDA_INCLUDE_DIRS})
+
+# The include and lib of PaddlePaddle under the Anaconda environment.
+set(PADDLE_INCLUDE_DIR {})
+set(PADDLE_LIB_DIR {})
+include_directories(${PADDLE_INCLUDE_DIR})
+link_directories(${PADDLE_LIB_DIR})
+
+# The include and lib of Python under the Anaconda environment.
+set(PYTHON_INCLUDE_DIR "${CONDA_PREFIX}/include")
+set(PYTHON_LIB_DIR "${CONDA_PREFIX}/lib")
+include_directories(${PYTHON_INCLUDE_DIR})
+link_directories(${PYTHON_LIB_DIR})
+
+# Special Compilation options for PADDLE.
+add_definitions(-DPADDLE_WITH_CUSTOM_KERNEL)# By default, PADDLE is not decoupled.
+if(CMAKE_CUDA_COMPILER)
+    add_definitions(-DPADDLE_WITH_CUDA)
+    add_definitions(-D__NVCC__)
+endif()
+
+# Create a dynamic link library target.
+add_library({} SHARED {})
+set_target_properties({} PROPERTIES COMPILE_FLAGS '-fPIC')
+
+# Link to the PaddlePaddle library,i.e. paddle_framework.
+target_link_libraries({} ${PADDLE_LIBRARIES})

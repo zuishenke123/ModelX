@@ -1,0 +1,110 @@
+# Orginal Prompting
+
+1. **Prompt Design:** Creating instructions for converting PyTorch code to Paddle code.<br>
+2. **Test Function:** Functions that generate prompts for testing code conversion.
+
+## Prompt Desgin
+```
+"Convert the provided PyTorch model source code to Paddle model source code. Ensure to handle semantic differences for operators like x.divide(2, rounding_mode='floor'), which uses torch.divide in PyTorch but lacks rounding_mode functionality in Paddle's equivalent paddle.divide."
+        # For example1:
+        "PyTorch model source code":
+        import torch
+        import torch.nn as nn
+
+        class RobertaClassificationHead(nn.Module):
+            def __init__(self, input_dim, num_classes):
+                super(RobertaClassificationHead, self).__init__()
+                self.dense = nn.Linear(input_dim, input_dim)
+                self.dropout = nn.Dropout(0.1)
+                self.out_proj = nn.Linear(input_dim, num_classes)
+
+            def forward(self, x):
+                x = self.dense(x)
+                x = torch.tanh(x)
+                x = self.dropout(x)
+                x = self.out_proj(x)
+                return x
+
+        ## Completion1:
+        import paddle
+        import paddle.nn as nn
+
+        class RobertaClassificationHead(nn.Layer):
+        def __init__(self, input_dim, num_classes):
+        super(RobertaClassificationHead, self).__init__()
+        self.dense = nn.Linear(input_dim, input_dim)
+        self.dropout = nn.Dropout(0.1)
+        self.out_proj = nn.Linear(input_dim, num_classes)
+
+        def forward(self, x):
+        x = self.dense(x)
+        x = paddle.tanh(x)
+        x = self.dropout(x)
+        x = self.out_proj(x)
+        return x
+
+        "The following is a JSON formatted text containing PyTorch model source code. Please provide the equivalent Paddle code (no code comments allowed), using the same JSON format as the PyTorch model source code."
+        "PyTorch model source code:"
+        {'D:/my_work/office/model_conver/models/text/sourceModels/roberta/model.py': 'import logging\nimport math\nfrom dataclasses import asdict, dataclass\nfrom typing import List, Optional\n\nimport torch\nimport torch.nn as nn\nfrom torch import Tensor\nfrom torch.nn import Module\n\nfrom .modules import TransformerEncoder\n\nlogger = logging.getLogger(__name__)\n\n\n@dataclass\nclass RobertaEncoderConf:\n    vocab_size: int = 50265\n    embedding_dim: int = 768\n    ffn_dimension: int = 3072\n    padding_idx: int = 1\n    max_seq_len: int = 514\n    num_attention_heads: int = 12\n    num_encoder_layers: int = 12\n    dropout: float = 0.1\n    scaling: Optional[float] = None\n    normalize_before: bool = False\n\n\nclass RobertaEncoder(Module):\n    def __init__(\n        self,\n        vocab_size: int,\n        embedding_dim: int,\n        ffn_dimension: int,\n        padding_idx: int,\n        max_seq_len: int,\n        num_attention_heads: int,\n        num_encoder_layers: int,\n        dropout: float = 0.1,\n        scaling: Optional[float] = None,\n        normalize_before: bool = False,\n        freeze: bool = False,\n    ) -> None:\n        super().__init__()\n        if not scaling:\n            head_dim = embedding_dim // num_attention_heads\n            scaling = 1.0 / math.sqrt(head_dim)\n\n        self.transformer = TransformerEncoder(\n            vocab_size=vocab_size,\n            embedding_dim=embedding_dim,\n            padding_idx=padding_idx,\n            max_seq_len=max_seq_len,\n            ffn_dimension=ffn_dimension,\n            num_encoder_layers=num_encoder_layers,\n            num_attention_heads=num_attention_heads,\n            dropout=dropout,\n            normalize_before=normalize_before,\n            scaling=scaling,\n            return_all_layers=False,\n        )\n\n        if freeze:\n            for p in self.parameters():\n                p.requires_grad = False\n\n    def forward(self, tokens: Tensor, masked_tokens: Optional[Tensor] = None) -> Tensor:\n        output = self.transformer(tokens)\n        output = output.transpose(1, 0)\n        if masked_tokens is not None:\n            output = output[masked_tokens.to(torch.bool), :]\n        return output\n\n\n# TODO: Add Missing quant noise and spectral norm from latest Roberta head in fairseq repo\nclass RobertaClassificationHead(nn.Module):\n    def __init__(\n        self, num_classes, input_dim, inner_dim: Optional[int] = None, dropout: float = 0.1, activation=nn.ReLU\n    ) -> None:\n        super().__init__()\n        if not inner_dim:\n            inner_dim = input_dim\n        self.dense = nn.Linear(input_dim, inner_dim)\n        self.dropout = nn.Dropout(dropout)\n        self.out_proj = nn.Linear(inner_dim, num_classes)\n        self.activation_fn = activation()\n\n    def forward(self, features):\n        x = features[:, 0, :]\n        x = self.dropout(x)\n        x = self.dense(x)\n        x = self.activation_fn(x)\n        x = self.dropout(x)\n        x = self.out_proj(x)\n        return x\n\n\nclass RobertaModel(Module):\n    def __init__(\n        self, encoder_conf: RobertaEncoderConf, head: Optional[Module] = None, freeze_encoder: bool = False\n    ) -> None:\n        super().__init__()\n        assert isinstance(encoder_conf, RobertaEncoderConf)\n\n        self.encoder = RobertaEncoder(**asdict(encoder_conf), freeze=freeze_encoder)\n        self.head = head\n\n    def forward(self, tokens: Tensor, masked_tokens: Optional[Tensor] = None) -> Tensor:\n        features = self.encoder(tokens, masked_tokens)\n        if self.head is None:\n            return features\n\n        x = self.head(features)\n        return x\n', 'D:/my_work/office/model_conver/models/text/sourceModels/roberta/modules.py': 'import logging\nfrom typing import List, Optional, Union\n\nimport torch\nfrom torch import nn\nfrom torch.nn import Module\n\nlogger = logging.getLogger(__name__)\n\n\nclass PositionalEmbedding(Module):\n    def __init__(self, num_embeddings: int, embedding_dim: int, pad_index: int) -> None:\n        super().__init__()\n        self.embedding = nn.Embedding(num_embeddings, embedding_dim, pad_index)\n        self.pad_index = pad_index\n\n    def forward(self, input):\n        positions = self._make_positions(input, self.pad_index)\n        return self.embedding(positions)\n\n    def max_positions(self):\n        if self.pad_index is not None:\n            return self.num_embeddings - self.pad_index - 1\n        else:\n            
+return self.num_embeddings\n\n    def _make_positions(self, tensor, pad_index: int):\n        masked = tensor.ne(pad_index).long()\n        return torch.cumsum(masked, dim=1) * masked + pad_index\n\n\nclass TransformerEncoderLayer(Module):\n    def __init__(\n        self,\n        embedding_dim: int,\n        num_attention_heads: int,\n        ffn_dimension: Optional[int] = None,\n        dropout: float = 0.1,\n        normalize_before: bool = False,\n        scaling: Optional[float] = None,\n    ) -> None:\n        super().__init__()\n        # TODO Manually setting scaling is not allowed\n        ffn_dimension = ffn_dimension or embedding_dim * 4\n\n        self.better_transformer = torch.nn.TransformerEncoderLayer(\n            d_model=embedding_dim,\n            nhead=num_attention_heads,\n            dim_feedforward=ffn_dimension,\n          
+  dropout=dropout,\n            batch_first=True,\n            activation="gelu",\n            norm_first=normalize_before,\n        )\n\n    def forward(self, input: torch.Tensor, key_padding_mask: torch.Tensor, attn_mask: Optional[torch.Tensor] = None):\n        # torch.nn.TransformerEncodeLayer\'s attn_mask and key_padding_mask\'s\n        # order is reversed\n        return self.better_transformer(input.transpose(0, 1), attn_mask, key_padding_mask).transpose(0, 1)\n\n\nclass TransformerEncoder(Module):\n    def __init__(\n        self,\n        vocab_size: int,\n        embedding_dim: int,\n        padding_idx: int,\n        max_seq_len: int,\n        num_encoder_layers: int,\n        num_attention_heads: int,\n        ffn_dimension: Optional[int] = None,\n        dropout: float = 0.1,\n        normalize_before: bool = False,\n        scaling: Optional[float] = None,\n        return_all_layers: bool = False,\n    ) -> None:\n        super().__init__()\n        self.padding_idx = padding_idx\n        self.token_embedding = nn.Embedding(vocab_size, embedding_dim, padding_idx)\n        ffn_dimension = ffn_dimension or 4 * embedding_dim\n        layer = torch.nn.TransformerEncoderLayer(\n            d_model=embedding_dim,\n            nhead=num_attention_heads,\n            dim_feedforward=ffn_dimension,\n            dropout=dropout,\n            activation="gelu",\n            batch_first=True,\n            norm_first=normalize_before,\n        )\n        self.layers = torch.nn.TransformerEncoder(\n            encoder_layer=layer,\n            num_layers=num_encoder_layers,\n            enable_nested_tensor=True,\n            mask_check=False,\n        )\n        self.positional_embedding = PositionalEmbedding(max_seq_len, embedding_dim, padding_idx)\n        self.embedding_layer_norm = nn.LayerNorm(embedding_dim)\n        self.dropout = nn.Dropout(dropout)\n        self.normalize_before = normalize_before\n        self.return_all_layers = return_all_layers\n\n    def forward(\n        self, tokens: torch.Tensor, attn_mask: Optional[torch.Tensor] = None\n    ) -> Union[torch.Tensor, List[torch.Tensor]]:\n        if attn_mask is not None:\n            torch._assert(\n                attn_mask.is_floating_point() or attn_mask.dtype == torch.bool,\n                f"Only float or bool types are supported for attn_mask not {attn_mask.dtype}",\n            )\n\n        padding_mask = tokens.eq(self.padding_idx)\n\n        token_embeddings = self.token_embedding(tokens)\n        embedded_positions = self.positional_embedding(tokens)\n\n        embedded = token_embeddings + embedded_positions\n\n        if not hasattr(self, "normalize_before"):\n            self.normalize_before = False\n        if not self.normalize_before:\n            embedded = self.embedding_layer_norm(embedded)\n        embedded = self.dropout(embedded)\n\n        if self.return_all_layers:\n            encoded = embedded\n            # B x T x C\n            # Then transpose back to T x B x C\n            states = [encoded.transpose(1, 0)]\n            for layer in self.layers.layers:\n                encoded = layer(encoded, src_key_padding_mask=padding_mask, src_mask=attn_mask)\n                encoded_t = encoded.transpose(1, 0)\n                states.append(encoded_t)\n            if self.normalize_before:\n                for i, state in enumerate(states):\n                    states[i] = self.embedding_layer_norm(state)\n            return states\n        else:\n            # B x T x C\n            # Then transpose back to T x B x C\n            encoded = self.layers(embedded, src_key_padding_mask=padding_mask).transpose(1, 0)\n            if self.normalize_before:\n                encoded = self.embedding_layer_norm(encoded)\n            return encoded\n'}
+
+        ## Completion:
+```
+
+## Test Function
+
+```
+
+def create_ordinary_prompt(json_data):
+
+    prompt="""
+        "Convert the provided PyTorch model source code to Paddle model source code. Ensure to handle semantic differences for operators like x.divide(2, rounding_mode='floor'), which uses torch.divide in PyTorch but lacks rounding_mode functionality in Paddle's equivalent paddle.divide."
+        # For example1:
+        "PyTorch model source code":
+        import torch
+        import torch.nn as nn
+
+        class RobertaClassificationHead(nn.Module):
+            def __init__(self, input_dim, num_classes):
+                super(RobertaClassificationHead, self).__init__()
+                self.dense = nn.Linear(input_dim, input_dim)
+                self.dropout = nn.Dropout(0.1)
+                self.out_proj = nn.Linear(input_dim, num_classes)
+        
+            def forward(self, x):
+                x = self.dense(x)
+                x = torch.tanh(x)
+                x = self.dropout(x)
+                x = self.out_proj(x)
+                return x
+        
+        ## Completion1:
+        import paddle
+        import paddle.nn as nn
+
+        class RobertaClassificationHead(nn.Layer):
+        def __init__(self, input_dim, num_classes):
+        super(RobertaClassificationHead, self).__init__()
+        self.dense = nn.Linear(input_dim, input_dim)
+        self.dropout = nn.Dropout(0.1)
+        self.out_proj = nn.Linear(input_dim, num_classes)
+
+        def forward(self, x):
+        x = self.dense(x)
+        x = paddle.tanh(x)
+        x = self.dropout(x)
+        x = self.out_proj(x)
+        return x
+        
+
+        "The following is a JSON formatted text containing PyTorch model source code. Please provide the equivalent Paddle code (no code comments allowed), using the same JSON format as the PyTorch model source code."
+        "PyTorch model source code:"
+        {param1}
+
+        ## Completion:
+
+        """.format(param1=json_data)
+    return prompt
+```
+
