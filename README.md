@@ -1,5 +1,5 @@
-# ModelX
-FSE2025 Accepted Paper: "Bridging Operator Semantic Inconsistencies: A Source-level Cross-framework Model Conversion Approach" 
+# ModelX && DeepModelX
+FSE2025 Accepted Paper: "Bridging Operator Semantic Inconsistencies: A Source-level Cross-framework Model Conversion Approach" and FSE-Poster 2025 Accepted Paper : "Enhancing Deep Learning Transpilation with LLMs: Automation and Semantic Consistency"
 
 <span style="background-color: #e0e0e0;">ModelX</span>
 is a **Source-level Cross-framework Conversion Tool** for operator semantic inconsistencies. It is designed to bridge operator semantic inconsistencies. Compared to previous
